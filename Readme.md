@@ -1,6 +1,6 @@
 # 🧠 HN Intelligence MCP
 
-A Model Context Protocol (MCP) server that extracts real signal from Hacker News — not summaries, not trends, not vibes. Actual anomalies.
+A Model Context Protocol (MCP) server that extracts real signal from Hacker News ,not summaries, not trends, not vibes. Actual anomalies.
 
 ## ⚠️ The Problem
 
@@ -8,7 +8,7 @@ Every "HN summary" tool does the exact same thing: dump 5,000 raw comments into 
 
 **This is different.**
 
-Signal extraction happens before your AI sees any data. The LLM receives a hyper-dense payload of pre-computed anomalies — not raw noise.
+Signal extraction happens before your AI sees any data. The LLM receives a hyper-dense payload of pre-computed anomalies, not raw noise.
 
 ## ⚙️ How It Works
 
@@ -42,7 +42,7 @@ Add the following to your `mcpServers` object:
     "hn-intelligence": {
       "command": "uvx",
       "args": [
-        "--from",
+        "from",
         "git+https://github.com/yourusername/hn-intelligence-mcp.git",
         "hn-intelligence-mcp"
       ]
@@ -65,7 +65,7 @@ Paste the following configuration:
     "hn-intelligence": {
       "command": "uvx",
       "args": [
-        "--from",
+        "from",
         "git+https://github.com/yourusername/hn-intelligence-mcp.git",
         "hn-intelligence-mcp"
       ]
@@ -153,6 +153,3 @@ Configure your MCP client to point to your local directory:
 }
 ```
 
-## License
-
-MIT
