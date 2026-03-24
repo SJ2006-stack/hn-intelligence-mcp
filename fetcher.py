@@ -222,86 +222,33 @@ def get_post_comments_data(
     post_url_or_id: str,
     max_depth: int = 8,
     max_comments: int = 200,
+def get_post_comments_data(
+    post_url_or_id: str,
+    max_depth: int = 8,  # Ignored in new implementation
+    max_comments: int = 200,
 ):
+    """
+    Fetch all comments for a post using a single Algolia API call.
+    Returns a flat list of comments (no tree structure).
+    """
     post_id = _resolve_post_id(post_url_or_id)
+    # Fetch post metadata from Firebase for consistency
     post = _fetch_firebase_item(post_id)
     if not post:
         raise ValueError("Post not found.")
 
-    counter = {"count": 0}
-
-    def build_comment_tree(comment_id: int, depth: int):
-        if counter["count"] >= max_comments or depth > max_depth:
-            return None
-
-        item = _fetch_firebase_item(comment_id)
-        if not item or item.get("deleted") or item.get("dead"):
-            return None
-        if item.get("type") != "comment":
-            return None
-
-        counter["count"] += 1
-        node = {
-            "id": item.get("id"),
-            "author": item.get("by", ""),
-            "text": item.get("text", ""),
-            "created_at_i": item.get("time"),
-            "hn_url": _hn_url(item.get("id")),
-            "replies": []
+    payload = _get_json(
+        f"{ALGOLIA_URL}/search",
+        params={
+            "tags": f"comment,story_{post_id}",
+            "hitsPerPage": max_comments
         }
-
-        for child_id in item.get("kids", []):
-            child = build_comment_tree(child_id, depth + 1)
-            if child:
-                node["replies"].append(child)
-            if counter["count"] >= max_comments:
-                break
-
-        return node
-
-    comments = []
-    for comment_id in post.get("kids", []):
-        node = build_comment_tree(comment_id, depth=1)
-        if node:
-            comments.append(node)
-        if counter["count"] >= max_comments:
-            break
+    )
+    comments = payload.get("hits", [])
 
     return {
         "post": _normalize_firebase_story(post),
         "comments": comments,
-        "total_comments_returned": counter["count"],
-        "truncated": counter["count"] >= max_comments
+        "total_comments_returned": len(comments),
+        "truncated": len(comments) >= max_comments
     }
-
-
-@functools.lru_cache(maxsize=128)
-def get_trending_data(timestamp: int, feed: str = "top", limit: int = 30):
-    feed_key = feed.strip().lower()
-    feed_map = {
-        "top": "topstories",
-        "new": "newstories",
-        "best": "beststories"
-    }
-    if feed_key not in feed_map:
-        raise ValueError("feed must be one of: top, new, best")
-
-    ids = _get_json(f"{FIREBASE_URL}/{feed_map[feed_key]}.json")
-    trending = []
-
-    # Pull extra IDs to tolerate dead/non-story items.
-    for rank, item_id in enumerate(ids[: limit * 3], start=1):
-        item = _fetch_firebase_item(item_id)
-        if not item or item.get("type") != "story" or item.get("dead"):
-            continue
-
-        story = _normalize_firebase_story(item)
-        story["rank"] = len(trending) + 1
-        story["feed"] = feed_key
-        story["source_rank"] = rank
-        trending.append(story)
-
-        if len(trending) >= limit:
-            break
-
-    return trending

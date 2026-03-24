@@ -8,3 +8,6 @@ dependencies = [
     "nltk",
     "vaderSentiment"
 ]
+
+[project.scripts]
+hn-intelligence-mcp = "server:mcp.run"
