@@ -220,10 +220,6 @@ def search_by_domain_data(domain: str, timestamp: int, limit: int = 30):
 
 def get_post_comments_data(
     post_url_or_id: str,
-    max_depth: int = 8,
-    max_comments: int = 200,
-def get_post_comments_data(
-    post_url_or_id: str,
     max_depth: int = 8,  # Ignored in new implementation
     max_comments: int = 200,
 ):
