@@ -1,5 +1,23 @@
 # 🧠 HackerNews Intelligence MCP
 
+<p align="center">
+  <a href="https://github.com/SJ2006-stack/hn-intelligence-mcp/stargazers">
+    <img src="https://img.shields.io/github/stars/SJ2006-stack/hn-intelligence-mcp?style=for-the-badge&color=fac360&logo=github" alt="GitHub stars" />
+  </a>
+  
+  <a href="https://www.python.org/downloads/">
+    <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+" />
+  </a>
+
+  <a href="https://github.com/astral-sh/uv">
+    <img src="https://img.shields.io/badge/built%20with-uv-DA2198?style=for-the-badge&logo=python" alt="Built with uv" />
+  </a>
+
+  <a href="https://github.com/SJ2006-stack/hn-intelligence-mcp/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/SJ2006-stack/hn-intelligence-mcp?style=for-the-badge" alt="License: MIT" />
+  </a>
+</p>
+
 A Model Context Protocol (MCP) server that extracts real signal from Hacker News ,not summaries, not trends, not vibes. Actual anomalies.
 
 - **Pure Python Data Science Stack:** Built with Python to easily integrate tools like VADER NLP and robust data-wrangling libraries, which are vastly superior to JS for text analysis.
@@ -45,7 +63,7 @@ Add the following to your `mcpServers` object:
       "command": "uvx",
       "args": [
         "from",
-        "git+https://github.com/yourusername/hn-intelligence-mcp.git",
+        "git+https://github.com/SJ2006-stack/hn-intelligence-mcp.git",
         "hn-intelligence-mcp"
       ]
     }
@@ -68,7 +86,7 @@ Paste the following configuration:
       "command": "uvx",
       "args": [
         "from",
-        "git+https://github.com/yourusername/hn-intelligence-mcp.git",
+        "git+https://github.com/SJ2006-stack/hn-intelligence-mcp.git",
         "hn-intelligence-mcp"
       ]
     }
@@ -133,7 +151,7 @@ Algolia HN API
 If you want to modify the filters or add new tools, clone the repository and run it locally:
 
 ```bash
-git clone https://github.com/yourusername/hn-intelligence-mcp.git
+git clone https://github.com/SJ2006-stack/hn-intelligence-mcp.git
 cd hn-intelligence-mcp
 ```
 
