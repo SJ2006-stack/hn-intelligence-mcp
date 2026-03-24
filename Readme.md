@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server that extracts real signal from Hacker News ,not summaries, not trends, not vibes. Actual anomalies.
 
+- **Pure Python Data Science Stack:** Built with Python to easily integrate tools like VADER NLP and robust data-wrangling libraries, which are vastly superior to JS for text analysis.
+
 ## ⚠️ The Problem
 
 Every "HackerNews summary" tool does the exact same thing: dump 5,000 raw comments into an LLM and ask "what's trending?" The result is slow, expensive, and hallucinates generic tech trends.
@@ -152,4 +154,8 @@ Configure your MCP client to point to your local directory:
   }
 }
 ```
+
+## 🤝 Contributing & Support
+
+If this saved your context window from being flooded with HN noise, please consider giving it a ⭐️. Pull requests for new signal filters are always welcome!
 
