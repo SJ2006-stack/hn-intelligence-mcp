@@ -1,10 +1,10 @@
-# 🧠 HN Intelligence MCP
+# 🧠 HackerNews Intelligence MCP
 
 A Model Context Protocol (MCP) server that extracts real signal from Hacker News ,not summaries, not trends, not vibes. Actual anomalies.
 
 ## ⚠️ The Problem
 
-Every "HN summary" tool does the exact same thing: dump 5,000 raw comments into an LLM and ask "what's trending?" The result is slow, expensive, and hallucinates generic tech trends.
+Every "HackerNews summary" tool does the exact same thing: dump 5,000 raw comments into an LLM and ask "what's trending?" The result is slow, expensive, and hallucinates generic tech trends.
 
 **This is different.**
 
