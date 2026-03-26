@@ -7,8 +7,7 @@ from fetcher import (
     get_top_posts_data,
     search_by_author_data,
     search_by_domain_data,
-    get_post_comments_data,
-    get_trending_data
+    get_post_comments_data
 )
 from filters import (
     controversy_filter,
