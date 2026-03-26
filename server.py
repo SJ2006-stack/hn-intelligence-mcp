@@ -199,5 +199,29 @@ def get_trending(feed: str = "top", limit: int = 30) -> str:
     return json.dumps(result, indent=2)
 
 
+def get_trending_data(bucket: str, feed: str, limit: int) -> dict:
+    """
+    Fetch trending stories from Hacker News based on the feed type and limit.
+    This is a placeholder implementation and should be replaced with actual logic.
+
+    Args:
+        bucket (str): Timestamp bucket for caching or grouping data.
+        feed (str): The feed type (e.g., 'top', 'new', 'best').
+        limit (int): The maximum number of stories to fetch.
+
+    Returns:
+        dict: A dictionary containing mock trending data.
+    """
+    # Placeholder data to simulate functionality
+    return {
+        "bucket": bucket,
+        "feed": feed,
+        "stories": [
+            {"id": i, "title": f"Story {i}", "url": f"https://example.com/story{i}"}
+            for i in range(1, limit + 1)
+        ],
+    }
+
+
 if __name__ == "__main__":
     mcp.run()

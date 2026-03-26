@@ -43,12 +43,13 @@ Four filters run locally, distilling the noise into pure signal:
 
 Your AI only sees the output of these filters — typically 10-20 highly relevant items instead of 5,000 sprawling comments. Fast. Cheap. Actually intelligent.
 
-## 🚀 Quickstart (Zero Install)
+## 🚀 Quickstart (Zero Install or Local Server)
 
-You do not need to clone this repository to use it. If you have `uv` installed, you can run this server instantly in your favorite AI environment.
+You can use this server in two ways: connect it to your AI environment or run it locally as a standalone server.
 
-### Option 1: Claude Desktop
+### Option 1: Connect with AI Tools
 
+#### Claude Desktop
 Open your Claude Desktop configuration file:
 
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -73,8 +74,7 @@ Add the following to your `mcpServers` object:
 
 Restart Claude Desktop.
 
-### Option 2: VS Code / Cursor (via Cline, Roo, or similar)
-
+#### VS Code / Cursor (via Cline, Roo, or similar)
 Open your extension's MCP settings (e.g., `Cmd/Ctrl + Shift + P` → `Cline: Open MCP Settings`).
 
 Paste the following configuration:
@@ -95,6 +95,34 @@ Paste the following configuration:
 ```
 
 > Note: If your code editor struggles to find `uvx` on macOS, change `"command"` to the absolute path, for example: `"/opt/homebrew/bin/uvx"`.
+
+### Option 2: Run as a Local Server
+
+To run the server locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/SJ2006-stack/hn-intelligence-mcp.git
+   cd hn-intelligence-mcp
+   ```
+2. Set up a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+3. Start the server:
+   ```bash
+   python server.py
+   ```
+
+The server will start and listen on `http://localhost:8000` (or another port if specified).
+
+### Troubleshooting
+
+- **Server not starting**: Ensure all dependencies are installed (`pip install -r requirements.txt`).
+- **Command not found**: If `uvx` is not found, provide the absolute path to the binary.
+- **Port conflicts**: If the default port is in use, specify a different port when starting the server.
 
 ## 🛠️ Usage Examples
 
